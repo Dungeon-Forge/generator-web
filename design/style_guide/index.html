@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>My Style Guide</title>
+
+    <!-- Site theme -->
+    <link rel="stylesheet" type="text/css" href="css/theme.css">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+        box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #9C1F19;
+            --secondary: rgba(64,21,10,1);
+            --tertiary: rgba(69,48,11,1);
+            --black: rgba(2,0,36,1);
+            --white: #faf0e6; 
+            --warning: #bd020b;
+            --success: #29753d;
+            --select-arrow: var(--select-border);
+            --select-border: #777;
+        }
+
+        body {
+            font-family: 'Rubik', sans-serif;
+            font-size: 16px;
+            background: linear-gradient(90deg, var(--black) 0%, var(--tertiary) 35%, var(--secondary) 100%);
+            color: var(--white);
+        }
+
+        h1 {
+            font-family: 'EB Garamond', serif;
+            font-size: 35px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        h2 {
+            font-size: 30px;
+            font-family: 'EB Garamond', serif;
+            font-weight: 500;
+            color: var(--white);
+        }
+
+        h3 {
+            font-size: 24px;
+            font-family: 'EB Garamond', serif;
+            font-weight: 400;
+            color: var(--white);
+        }
+
+        button {
+            background: none;
+            border: none;
+            padding: 8px 12px;
+            color: var(--white);
+        }
+
+        .submitButton {
+            background-color: var(--primary);
+            border-color: var(--secondary);
+            border-radius: 8px;
+            color: var(--white);
+            padding: 8px 12px;
+        }
+
+        .inputLabel {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input.authenticationInputField {
+            padding: 8px 12px;
+            border: 1px solid var(--secondary);
+            border-radius: 8px;
+            color: var(--black);
+        }
+
+        input, select, textarea{
+            color: var(--black);
+        }
+
+        textarea:focus, input:focus {
+            color: var(--black);
+        }
+
+        input.authenticationInputField::placeholder {
+            opacity: 0.5;
+        }
+
+        div.box {
+            height: 100px;
+            width: 100px;
+            display: inline-block;
+            margin: 0 10px 0 10px;
+        }
+
+        #primary1 {
+            background-color: var(--primary);
+        }
+
+        #primary2 {
+            background-color: var(--secondary);
+        }
+
+        #primary3 {
+            background-color: var(--tertiary);
+        }
+
+        .danger {
+            background-color: var(--warning);
+            font-weight: bold;
+            color: var(--white);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .success {
+            background-color: var(--success);
+            font-weight: bold;
+            color: var(--white);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        svg.svg-inline--fa {
+            color: var(--white);
+        }
+
+        select {
+            appearance: none;
+            background-color: transparent;
+            border: none;
+            padding: 0 1em 0 0;
+            margin: 0;
+            width: 100%;
+            font-family: inherit;
+            font-size: inherit;
+            cursor: inherit;
+            line-height: inherit;
+            z-index: 1;
+
+            &::-ms-expand {
+                display: none;
+            }
+
+            outline: none;
+        }
+
+        .select {
+            display: grid;
+            grid-template-areas: "select";
+            align-items: center;
+            position: relative;
+
+            select,
+            &::after {
+                grid-area: select;
+            }
+
+            min-width: 15ch;
+            max-width: 30ch;
+
+            border: 1px solid var(--select-border);
+            border-radius: 0.25em;
+            padding: 0.25em 0.5em;
+            font-size: 1.25rem;
+            cursor: pointer;
+            line-height: 1.1;
+            background-color: var(--white);
+
+
+            &:not(.select--multiple)::after {
+                content: "";
+                justify-self: end;
+                width: 0.8em;
+                height: 0.5em;
+                background-color: var(--select-arrow);
+                clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+            }
+        }
+        
+        select:focus + .focus {
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border: 2px solid var(--select-focus);
+            border-radius: inherit;
+        }
+
+        .select + label {
+            margin-top: 2rem;
+        }
+
+
+        .spacer {
+            margin-top: 25px;
+        }
+
+        #footer {
+            border-top: 1px solid var(--white);
+            margin-top: 50px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .list-group-item a {
+            background: none;
+            border: none;
+            padding: 8px 12px;
+            color: var(--white);
+            font-family: 'Rubik', sans-serif;
+            font-size: 16px;
+        }
+    </style>
+
+	<!-- Include script for font awesome icon library -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+</head>
+
+<body>
+    <a name="Top"></a>
+    <div class="container">
+        <div class="col-md-3">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="#font">Font</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#colorTheme">Color Theme</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#headings">Headings</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#buttons">Buttons</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#formElements">Form Elements</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#messages">Messages</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <!-- About -->
+            <div>
+                <div class="page-header">
+                    <h1>
+                        <a name="about"></a>My Styles</h1>
+                </div>
+                <p>This page contains specific style guide information for my front end interface.</p>
+            </div>
+            <!-- End About -->
+
+            <!-- Fonts -->
+            <div>
+                <div class="page-header">
+                    <h1>
+                        <a name="fonts"></a>Font</h1>
+                </div>
+                <h2>Headers</h2>
+                <p>The headings for the website uses the EB Garamond, serif font family with a white font to provide contrast with the dark background.</p>
+                <h2>Body</h2>
+                <p>The body for the website uses the Rubik, sans-serif font family with a white font to provide contrast with the dark background.</p>
+            </div>
+            <!-- End Fonts -->
+
+            <!-- Color Theme -->
+            <div>
+                <div class="page-header">
+                    <h1>
+                        <a name="colorTheme"></a>Color Theme</h1>
+                </div>
+                <p>My application incorporates the below monochromatic color scheme in its interface. The primary color is used for all buttons and user input. The secondary color is used for colors. The tertiary color is simply part of the gradient background.</p>
+                <div class="box" id="primary1"></div>
+                <div class="box" id="primary2"></div>
+                <div class="box" id="primary3"></div>
+
+            </div>
+            <!-- End Color Theme -->
+
+            <!-- Headings -->
+            <div>
+                <div class="page-header">
+                    <h1>
+                        <a name="headings"></a>Headings</h1>
+                </div>
+                <p>The below font sizes and styles are used in the application for various content headings.</p>
+                <h1>Heading 1</h1>
+                <h2>Heading 2</h2>
+                <h3>Heading 3</h3>
+            </div>
+            <!-- End Headings -->
+
+            <!-- Buttons -->
+            <div>
+                <div class="page-header">
+                    <h1>
+                        <a name="buttons"></a>Buttons</h1>
+                </div>
+                <div>
+                    <h2>Form Submission Buttons</h2>
+                    <p>For form submission, buttons will feature rounded corners and a dark background with a white text such as the following</p>
+                    <button class="submitButton">Submit</button>
+                </div>
+            </div>
+            <!-- End Buttons -->
+
+            <!-- Form Elements -->
+            <div>
+                <div class="page-header">
+                    <h1>
+                        <a name="formElements"></a>Form Elements</h1>
+                </div>
+                <p>The campaign creation form will feature radio buttons, number steppers, and dropdown selectors.</p>
+                <h2>Campaign Creation Form</h2>
+                    
+                <form>
+                    <div>
+                        <input type="radio" id="html" name="fav_language" value="Answer">
+                        <label for="html">Answer</label><br>
+                    </div>
+    
+                    <br>
+
+                    <div class="select">
+                        <select id="select" id="standard-select" name="select">
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                            <option value="option4">Option 4</option>
+                        </select>
+                        <span class="focus"></span>
+                    </div>
+
+                    <br>
+
+                    <div>
+                        <input type="number" id="characterCount" name="characterCount" step="1" value="1" min="1" max="10">
+                    </div>
+
+                    <br>
+                    
+                    <div>
+                        <input type="submit" class="submitButton" value="Submit">
+                    </div>
+                </form>
+            </div>
+            <!-- End Form Elements -->
+
+            <!-- User Messages -->
+            <div>
+                <div class="page-header">
+                    <h1>
+                        <a name="messages"></a>Messages</h1>
+                </div>
+                <p>For various completed tasks, application notifications will be presented to the user based.  The following contextual messages will be used.</p>
+                <p class="danger">Danger!</p>
+                <p class="success">Success!</p>
+            </div>
+            <!-- End User Messages -->
+        </div>
+    </div>
+    <div id="footer">
+        <div class="spacer">
+            <a href="#Top">Back to Top</a>
+        </div>
+        <br>
+    </div>
+</body>
+
+</html>
