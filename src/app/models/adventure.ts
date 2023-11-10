@@ -1,3 +1,5 @@
+import { CampaignEvent } from "./campaign-event"
+
 export class Adventure {
     title: string
     html: string
