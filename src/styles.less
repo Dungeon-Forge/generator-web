@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+@black                  :#1E1E1E;
+@primary                :#332121;
+@white                  :#FFFFFF;
+@secondary              :#40150A;
+@background             :#FAF7EA;
+
+// Button Colors
+@buttonStep1            :#9A424D;
+@buttonStep2            :#C74F52;
+@buttonStep3            :#C06F3F;
+@buttonStep4            :#995F3B;
+
+@buttonLinearGradient   :linear-gradient(90deg, @buttonStep1 0%, @buttonStep2 20.15%, @buttonStep3 67.71%, @buttonStep4 100%);
+@homeSectionGradient    :linear-gradient(180deg, @secondary 0%, @black 100%);
+@homeBackgroundGradient :linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), linear-gradient(180deg, rgba(51, 33, 33, 0.75) 0%, #1E1E1E 100%);
+
+.text {
+    font-family: 'Rubik', sans-serif;
+    text-align: center;
+}
+
+.header {
+    font-family: 'EB Garamond', serif;
+    text-align: center;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    background: @homeBackgroundGradient;
+    background-attachment: fixed; /*edit*/
+    padding: 0;
+    margin: 0;
+}
