@@ -1,1 +1,21 @@
-<p>campaign-view works!</p>
+<div class="header">
+    <a href="/create"><button>Create Campaign</button></a>
+    <div class="title">
+        <div>
+            <h1>Campaign Title</h1>
+            <p>{{numPlayers}} players</p>
+            <p>Levels {{startingLevel}} - {{endingLevel}}</p>
+        </div>
+    
+        <img src="https://i.imgur.com/aScv1xB.jpg">
+    </div>
+</div>
+
+
+
+<div class="content">
+    <div *ngFor="let page of pages; index as i;" class="phb">
+        <div [innerHTML]='page'></div>
+        <div class="pageNumber">{{i + 1}}</div>
+    </div>
+</div>
