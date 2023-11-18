@@ -1,0 +1,77 @@
+@import "/src/styles.less";
+
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: @homeBackgroundGradient;
+    box-shadow: 0 4px 4px @black;
+
+    div {
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        width: 40%;
+        margin-inline-start: 2em;
+
+        h1, h2 {
+            text-align: start;
+            color: @white;
+        }
+    }
+
+    img {
+        max-width: 40%;
+        max-height: 40%;
+        aspect-ratio: 1;
+    }
+}
+
+.generate-form {
+    background: @background;
+
+    .question-field {
+        padding: 16px;
+
+        .question {
+            font-size: x-large;
+        }
+
+        label {
+            padding: 8px;
+            font-size: 16px;
+        }
+    }
+}
+
+.number-picker {
+    max-width: fit-content;
+    display: flex;
+    flex-direction: row;
+    border: 1px;
+    border-style: solid;
+    align-items: center;
+    border-color: @black;
+    border-radius: 4px;
+    margin: 8px;
+
+    div {
+        padding: 8px 16px;
+    }
+
+    p {
+        font-weight: bolder;
+    }
+}
+
+.submit {
+    border-radius: 4px;
+    border-style: solid;
+    border-color: @black;
+    border-width: 1px;
+    padding: 16px;
+    outline: none;
+    background: none;
+    margin: 16px;
+}
