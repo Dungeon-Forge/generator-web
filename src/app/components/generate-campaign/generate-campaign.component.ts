@@ -25,14 +25,22 @@ export class GenerateCampaignComponent {
 
   submitSurvey() {
     const surveyOutput = {
-      "NumCharacters": this.numCharacters,
-      "StartingLevel": (<HTMLInputElement>document.getElementById("start-level"))?.value,
-      "EndingLevel": (<HTMLInputElement>document.getElementById("end-level"))?.value,
-      "RolePlaying": (<HTMLInputElement>document.querySelector('input[name="Role Playing"]:checked')).value,
-      "Traps": (<HTMLInputElement>document.querySelector('input[name="Traps"]:checked')).value,
-      "Puzzles": (<HTMLInputElement>document.querySelector('input[name="Puzzles"]:checked')).value,
-      "Combat": (<HTMLInputElement>document.querySelector('input[name="Combat"]:checked')).value
+      "numPlayerCharacters": this.numCharacters,
+      "startingLevel": parseInt((<HTMLInputElement>document.getElementById("start-level"))?.value),
+      "endingLevel": parseInt((<HTMLInputElement>document.getElementById("end-level"))?.value),
+      "rolePlayingScale": parseInt((<HTMLInputElement>document.querySelector('input[name="Role Playing"]:checked')).value),
+      "trapScale": parseInt((<HTMLInputElement>document.querySelector('input[name="Traps"]:checked')).value),
+      "puzzleScale": parseInt((<HTMLInputElement>document.querySelector('input[name="Puzzles"]:checked')).value),
+      "combatScale": parseInt((<HTMLInputElement>document.querySelector('input[name="Combat"]:checked')).value)
     }
-    console.log("New Combat Value: " + JSON.stringify(surveyOutput));
+    console.log("Survey Submitted: " + JSON.stringify(surveyOutput));
+    
+    this.campaignService.generateCampaign(surveyOutput)
+    .then((newId) => {
+      console.log("Received new campaign id: " + newId)
+    })
+    .catch((error) => {
+      console.log("Failed to generate a campaign: " + error.message)
+    })
   }
 }

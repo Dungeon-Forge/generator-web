@@ -1,11 +1,33 @@
 import { Campaign } from "../models/campaign";
 import { CampaignFormResponse } from "../models/campaign-form-response";
 import { CampaignService } from "./campaign-service";
+import axios from "axios";
 
 export class RemoteCampaignService implements CampaignService {
+    baseURL = "http://dungeonforgeserver-env.eba-6x2ib96k.us-east-2.elasticbeanstalk.com"
+
     generateCampaign(input: CampaignFormResponse): Promise<string> {
-        throw new Error("Method not implemented.");
+        const url = "/campaigns/generate"
+
+        return new Promise((resolve, reject) => {
+            axios.post(this.baseURL + url, input)
+            .then(function (response) {
+                console.log("Received response from campaign generator: " + response)
+                const campaignId = response.data.campaignId
+
+                if (typeof campaignId === 'string') {
+                    resolve(campaignId)
+                } else {
+                    reject(new Error("Received an invalid response from the server with id " + campaignId))
+                }
+            })
+            .catch(function (error) {
+                console.log("Error generating campaign: " + error);
+                reject(error);
+            })
+        })
     }
+
     fetchCampaign(id: string): Promise<Campaign> {
         throw new Error("Method not implemented.");
     }
