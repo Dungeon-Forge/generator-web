@@ -1,92 +1,111 @@
-<div class="title">
-    <div>
-        <h1 class="header">Create a New Campaign</h1>
-        <h2 class="text">Fill out the form below and see your campaign come to life</h2>
+<div>
+    <div class="title">
+        <div>
+            <h1 class="header">Create a New Campaign</h1>
+            <h2 class="text">Fill out the form below and see your campaign come to life</h2>
+        </div>
+    
+        <img src="/assets/generate-campaign.jpg">
     </div>
-
-    <img src="/assets/generate-campaign.jpg">
+    
+    <form class="generate-form">
+        <!-- Player Picker -->
+        <div class="question-field">
+            <span class="question">How many player characters?</span>
+            <div class="number-picker">
+                <div id="minus" (click)="decrementNumCharacters()">-</div>
+                <p id="number">{{numCharacters}}</p>
+                <div id="plus" (click)="incrementNumCharacters()">+</div>
+            </div>
+        </div>
+    
+        <!-- Level Picker -->
+        <div class="question-field">
+            <span class="question">What levels should the players achieve?</span>
+    
+            <br>
+    
+            <div>
+                <select id="start-level" name="Starting Level">
+                    <option value=0 disabled>Starting Level</option>
+                    <option value=1 selected="selected">1</option>
+                    <option value=3>3</option>
+                    <option value=5>5</option>
+                    <option value=10>10</option>
+                </select>
+    
+                <select id="end-level" name="Ending Level">
+                    <option value=0 disabled>Ending Level</option>
+                    <option value=3 selected="selected">3</option>
+                    <option value=5>5</option>
+                    <option value=10>10</option>
+                    <option value=15>15</option>
+                    <option value=20>20</option>
+                </select>
+            </div>
+        </div>
+    
+        <!-- Role Playing -->
+        <div class="question-field">
+            <span class="question">How does your group feel about role-playing opportunities?</span><br>
+            <input type="radio" id="role-playing1" name="Role Playing" value=1>
+            <label for="role-playing1" value=>We love to role play</label><br>
+            <input type="radio" id="role-playing2" name="Role Playing" value=0>
+            <label for="role-playing1">We are okay with role play</label><br>  
+            <input type="radio" id="role-playing3" name="Role Playing" value=-1>
+            <label for="role-playing3">We’d prefer not to role play much</label><br>
+        </div>
+    
+        <!-- Traps -->
+        <div class="question-field">
+            <span class="question">How does your group feel about traps?</span><br>
+            <input type="radio" id="traps1" name="Traps" value=1>
+            <label for="traps1" value=>The more traps the better</label><br>
+            <input type="radio" id="traps2" name="Traps" value=0>
+            <label for="traps2">Keep us on our toes, but not too many traps</label><br>  
+            <input type="radio" id="traps3" name="Traps" value=-1>
+            <label for="traps3">We are wary of traps, let’s not encounter many</label><br>
+        </div>
+    
+        <!-- Puzzles -->
+        <div class="question-field">
+            <span class="question">How does your group feel about puzzles?</span><br>
+            <input type="radio" id="puzzles1" name="Puzzles" value=1>
+            <label for="puzzles1" value=>Bring it on!</label><br>
+            <input type="radio" id="puzzles2" name="Puzzles" value=0>
+            <label for="puzzles2">We should be able to figure out a few</label><br>  
+            <input type="radio" id="puzzles3" name="Puzzles" value=-1>
+            <label for="puzzles3">Puzzles waste too much time</label><br>
+        </div>
+    
+        <!-- Combat -->
+        <div class="question-field">
+            <span class="question">How does your group feel about combat?</span><br>
+            <input type="radio" id="combat1" name="Combat" value=1>
+            <label for="combat1" value=>We all wanted to be Barbarian class</label><br>
+            <input type="radio" id="combat2" name="Combat" value=0>
+            <label for="combat2">We won’t back down from a fight</label><br>  
+            <input type="radio" id="combat3" name="Combat" value=-1>
+            <label for="combat3">We prefer diplomacy</label><br>
+        </div>
+    </form>
+    
+    <button class="submit" (click)="submitSurvey()">Create Campaign</button>   
 </div>
 
-<form class="generate-form">
-    <!-- Player Picker -->
-    <div class="question-field">
-        <span class="question">How many player characters?</span>
-        <div class="number-picker">
-            <div id="minus" (click)="decrementNumCharacters()">-</div>
-            <p id="number">{{numCharacters}}</p>
-            <div id="plus" (click)="incrementNumCharacters()">+</div>
-        </div>
+<!-- Error Modal -->
+<div *ngIf="shouldDisplayError" class="modal">
+    <div>
+        <h1>Failed to Generate Campaign</h1>
+        <p>Please try again later.</p>
+        <button (click)="dismissModal()">Dismiss</button>
     </div>
+</div>
 
-    <!-- Level Picker -->
-    <div class="question-field">
-        <span class="question">What levels should the players achieve?</span>
-
-        <br>
-
-        <div>
-            <select id="start-level" name="Starting Level">
-                <option value=0 disabled>Starting Level</option>
-                <option value=1 selected="selected">1</option>
-                <option value=3>3</option>
-                <option value=5>5</option>
-                <option value=10>10</option>
-            </select>
-
-            <select id="end-level" name="Ending Level">
-                <option value=0 disabled>Ending Level</option>
-                <option value=3 selected="selected">3</option>
-                <option value=5>5</option>
-                <option value=10>10</option>
-                <option value=15>15</option>
-                <option value=20>20</option>
-            </select>
-        </div>
+<!-- Success Modal -->
+<div *ngIf="shouldDisplaySuccess" class="modal">
+    <div>
+        <h1>Your campaign is ready</h1>
+        <button (click)="displayCampaign()">Start Your Adventure</button>
     </div>
-
-    <!-- Role Playing -->
-    <div class="question-field">
-        <span class="question">How does your group feel about role-playing opportunities?</span><br>
-        <input type="radio" id="role-playing1" name="Role Playing" value=1>
-        <label for="role-playing1" value=>We love to role play</label><br>
-        <input type="radio" id="role-playing2" name="Role Playing" value=0>
-        <label for="role-playing1">We are okay with role play</label><br>  
-        <input type="radio" id="role-playing3" name="Role Playing" value=-1>
-        <label for="role-playing3">We’d prefer not to role play much</label><br>
-    </div>
-
-    <!-- Traps -->
-    <div class="question-field">
-        <span class="question">How does your group feel about traps?</span><br>
-        <input type="radio" id="traps1" name="Traps" value=1>
-        <label for="traps1" value=>The more traps the better</label><br>
-        <input type="radio" id="traps2" name="Traps" value=0>
-        <label for="traps2">Keep us on our toes, but not too many traps</label><br>  
-        <input type="radio" id="traps3" name="Traps" value=-1>
-        <label for="traps3">We are wary of traps, let’s not encounter many</label><br>
-    </div>
-
-    <!-- Puzzles -->
-    <div class="question-field">
-        <span class="question">How does your group feel about puzzles?</span><br>
-        <input type="radio" id="puzzles1" name="Puzzles" value=1>
-        <label for="puzzles1" value=>Bring it on!</label><br>
-        <input type="radio" id="puzzles2" name="Puzzles" value=0>
-        <label for="puzzles2">We should be able to figure out a few</label><br>  
-        <input type="radio" id="puzzles3" name="Puzzles" value=-1>
-        <label for="puzzles3">Puzzles waste too much time</label><br>
-    </div>
-
-    <!-- Combat -->
-    <div class="question-field">
-        <span class="question">How does your group feel about combat?</span><br>
-        <input type="radio" id="combat1" name="Combat" value=1>
-        <label for="combat1" value=>We all wanted to be Barbarian class</label><br>
-        <input type="radio" id="combat2" name="Combat" value=0>
-        <label for="combat2">We won’t back down from a fight</label><br>  
-        <input type="radio" id="combat3" name="Combat" value=-1>
-        <label for="combat3">We prefer diplomacy</label><br>
-    </div>
-</form>
-
-<button class="submit" (click)="submitSurvey()">Create Campaign</button>
+</div>
