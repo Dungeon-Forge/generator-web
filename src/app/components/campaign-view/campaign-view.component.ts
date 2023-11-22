@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CampaignService } from 'src/app/services/campaign-service';
 
 @Component({
   selector: 'app-campaign-view',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./campaign-view.component.less']
 })
 export class CampaignViewComponent {
+  campaignService: CampaignService;
   startingLevel: number = 1
   endingLevel: number = 2
   numPlayers: number = 1
@@ -77,4 +79,8 @@ export class CampaignViewComponent {
     <p>aalskdjf a;slkdjf ;alskdjfv na;lskdjf ;lasdkjfvwqeoijvnfpeoqwiudhgj [opaisdufnvpoiwejdgv apaiosunf ql;wkvf aksjdhf poasidfjvnqwlkervn apsoidug npaosij vfq;lwkejvnfpoasidufn aosj dfvpoqwiunecrm[paosk, foaijsh fpoiajsnmvt[oiqwje vflaksjd f[0oiasumfv[lkqwj erfvpoijas dg[oija spfv oijqwnf[d poi asdpjfqpeoijfv owieurhgnvpodi nvm pkj ,mj dpoijeq pgotjdsfplgkj epoijtr oqiwje flkasjdngp oi jdl;f kmxl kmc[owpd r[weopuit -[0394u5 [oqidsajg [owij foq[wiej toi</p>
     `
   ]
+
+  constructor(campaignService: CampaignService) {
+    this.campaignService = campaignService
+  }
 }

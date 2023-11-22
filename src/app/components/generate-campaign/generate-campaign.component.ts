@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { CampaignService } from 'src/app/services/campaign-service';
 
 @Component({
   selector: 'app-generate-campaign',
@@ -7,7 +8,12 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./generate-campaign.component.less'],
 })
 export class GenerateCampaignComponent {
+  campaignService: CampaignService;
   numCharacters: number = 0
+
+  constructor(campaignService: CampaignService) {
+    this.campaignService = campaignService
+  }
 
   decrementNumCharacters() {
     this.numCharacters = Math.max(0, this.numCharacters - 1)
