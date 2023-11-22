@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CampaignService } from 'src/app/services/campaign-service';
 
 @Component({
@@ -80,7 +81,28 @@ export class CampaignViewComponent {
     `
   ]
 
-  constructor(campaignService: CampaignService) {
+  constructor(private router: Router, private route: ActivatedRoute, campaignService: CampaignService) {
     this.campaignService = campaignService
+  }
+  
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.fetchCampaignById(id)
+    } else {
+      this.router.navigate(["404"])
+    }
+  }
+
+  fetchCampaignById(id: string) {
+    console.log("Fetching campaign for id: " + id)
+    this.campaignService.fetchCampaign(id)
+    .then((campaign) => {
+      console.log("Retrieved campaign for id: " + id + "\nCampaign: " + campaign);
+    })
+    .catch((error) => {
+      console.log("Error retrieving campaign for id: " + id + "\nError: " + error.message);
+      this.router.navigate(["404"])
+    });
   }
 }

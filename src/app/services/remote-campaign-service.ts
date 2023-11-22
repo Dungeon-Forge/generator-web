@@ -29,6 +29,18 @@ export class RemoteCampaignService implements CampaignService {
     }
 
     fetchCampaign(id: string): Promise<Campaign> {
-        throw new Error("Method not implemented.");
+        const url = "/campaign/" + id
+
+        return new Promise((resolve, reject) => {
+            axios.get(this.baseURL + url)
+            .then(function (response) {
+                console.log("Received response from campaign generator: " + response)
+                reject(new Error("Failed to parse campaign"))
+            })
+            .catch(function (error) {
+                console.log("Error fetching campaign: " + error);
+                reject(error);
+            })
+        })
     }
 }
