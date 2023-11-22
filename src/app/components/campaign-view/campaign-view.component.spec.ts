@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CampaignViewComponent } from './campaign-view.component';
+import { CampaignService } from 'src/app/services/campaign-service';
+import { CampaignFormResponse } from 'src/app/models/campaign-form-response';
+import { Campaign } from 'src/app/models/campaign';
 
 describe('CampaignViewComponent', () => {
   let component: CampaignViewComponent;
@@ -8,7 +11,10 @@ describe('CampaignViewComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CampaignViewComponent]
+      declarations: [CampaignViewComponent],
+      providers: [
+        { provide: CampaignService, useClass: MockCampaignService },
+      ]
     });
     fixture = TestBed.createComponent(CampaignViewComponent);
     component = fixture.componentInstance;
@@ -19,3 +25,12 @@ describe('CampaignViewComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+class MockCampaignService implements CampaignService {
+  generateCampaign(input: CampaignFormResponse): Promise<string> {
+    throw new Error('Method not implemented.');
+  }
+  fetchCampaign(id: string): Promise<Campaign> {
+    throw new Error('Method not implemented.');
+  }
+}

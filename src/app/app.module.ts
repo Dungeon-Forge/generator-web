@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { CampaignViewComponent } from './components/campaign-view/campaign-view.component';
 import { GenerateCampaignComponent } from './components/generate-campaign/generate-campaign.component';
+import { RemoteCampaignService } from './services/remote-campaign-service';
+import { CampaignService } from './services/campaign-service';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,12 @@ import { GenerateCampaignComponent } from './components/generate-campaign/genera
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: CampaignService,
+      useClass: RemoteCampaignService
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
