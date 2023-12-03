@@ -10,10 +10,10 @@ export class RemoteCampaignService implements CampaignService {
         const url = "/campaigns/generate"
 
         return new Promise((resolve, reject) => {
-            axios.post(this.baseURL + url, input)
+            axios.post(this.baseURL + url, input, { timeout: 12000000 })
             .then(function (response) {
-                console.log("Received response from campaign generator: " + response)
-                const campaignId = response.data.campaignId
+                console.log("Received response from campaign generator: " + JSON.stringify(response))
+                const campaignId = response.data.id
 
                 if (typeof campaignId === 'string') {
                     resolve(campaignId)
