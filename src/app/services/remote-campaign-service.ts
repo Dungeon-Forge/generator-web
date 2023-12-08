@@ -28,14 +28,14 @@ export class RemoteCampaignService implements CampaignService {
         })
     }
 
-    fetchCampaign(id: string): Promise<Campaign> {
+    fetchCampaign(id: string): Promise<string> {
         const url = "/campaign/" + id
 
         return new Promise((resolve, reject) => {
             axios.get(this.baseURL + url)
             .then(function (response) {
-                console.log("Received response from campaign generator: " + response)
-                reject(new Error("Failed to parse campaign"))
+                console.log("Received response from campaign service: " + response.data)
+                resolve(response.data)
             })
             .catch(function (error) {
                 console.log("Error fetching campaign: " + error);

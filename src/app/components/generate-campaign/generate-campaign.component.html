@@ -90,7 +90,16 @@
         </div>
     </form>
     
-    <button class="submit" (click)="submitSurvey()">Create Campaign</button>   
+    <button id="submit" class="submit" (click)="submitSurvey()">Create Campaign</button>   
+</div>
+
+<!-- Processing Spinner -->
+<div *ngIf="isProcessing" class="modal">
+    <div>
+        <h1>Generating Your Campaign</h1>
+        <p>This can take up to 20 minutes</p>
+        <div class="loader"></div>
+    </div>   
 </div>
 
 <!-- Error Modal -->

@@ -35,7 +35,7 @@ class MockCampaignService implements CampaignService {
   generateCampaign(input: CampaignFormResponse): Promise<string> {
     throw new Error('Method not implemented.');
   }
-  fetchCampaign(id: string): Promise<Campaign> {
+  fetchCampaign(id: string): Promise<string> {
     throw new Error('Method not implemented.');
   }
 }

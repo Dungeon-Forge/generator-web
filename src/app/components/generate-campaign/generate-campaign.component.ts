@@ -13,6 +13,7 @@ export class GenerateCampaignComponent {
   numCharacters: number = 0;
   shouldDisplayError = false;
   shouldDisplaySuccess = false;
+  isProcessing = false;
   generatedCampaignId: string = ''
 
   constructor(private router: Router, campaignService: CampaignService) {
@@ -41,35 +42,60 @@ export class GenerateCampaignComponent {
       }
 
       console.log("Survey Submitted: " + JSON.stringify(surveyOutput));
+      this.toggleButtonEnabled(false)
     
       this.campaignService.generateCampaign(surveyOutput)
       .then((newId) => {
         console.log("Received new campaign id: " + newId)
+        this.generatedCampaignId = newId
         this.shouldDisplayError = false
         this.shouldDisplaySuccess = true
+        this.toggleButtonEnabled(true)
       })
       .catch((error) => {
         console.log("Failed to generate a campaign: " + error.message)
         this.shouldDisplayError = true
         this.shouldDisplaySuccess = false
+        this.isProcessing = false
       })
     } catch {
       console.log("Invalid form response")
       this.shouldDisplayError = true
       this.shouldDisplaySuccess = false
+      this.isProcessing = false
     }
   }
 
   dismissModal() {
     this.shouldDisplayError = false;
     this.shouldDisplaySuccess = false;
+    this.toggleButtonEnabled(true);
+    window.location.reload()
   }
 
   displayCampaign() {
     if (this.generatedCampaignId) {
-      this.router.navigate(["campaign", this.generatedCampaignId])
+      this.fetchCampaignById(this.generatedCampaignId)
     } else {
       this.router.navigate(["404"])
     }
+  }
+
+  toggleButtonEnabled(isEnabled: boolean) {
+    (<HTMLInputElement> document.getElementById("submit")).disabled = !isEnabled;
+    this.isProcessing = !isEnabled
+  }
+
+  fetchCampaignById(id: string) {
+    console.log("Fetching campaign for id: " + id)
+    this.campaignService.fetchCampaign(id)
+    .then((campaign) => {
+      console.log("Retrieved campaign for id: " + id + "\nCampaign: " + campaign);
+      window.open(campaign);
+    })
+    .catch((error) => {
+      console.log("Error retrieving campaign for id: " + id + "\nError: " + error.message);
+      this.router.navigate(["404"]);
+    });
   }
 }

@@ -5,6 +5,7 @@ import { CampaignService } from 'src/app/services/campaign-service';
 import { CampaignFormResponse } from 'src/app/models/campaign-form-response';
 import { Campaign } from 'src/app/models/campaign';
 import { RouterTestingModule } from "@angular/router/testing";
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 describe('CampaignViewComponent', () => {
   let component: CampaignViewComponent;
@@ -14,7 +15,8 @@ describe('CampaignViewComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CampaignViewComponent],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        PdfViewerModule
       ],
       providers: [
         { provide: CampaignService, useClass: MockCampaignService },
@@ -34,7 +36,7 @@ class MockCampaignService implements CampaignService {
   generateCampaign(input: CampaignFormResponse): Promise<string> {
     throw new Error('Method not implemented.');
   }
-  fetchCampaign(id: string): Promise<Campaign> {
+  fetchCampaign(id: string): Promise<string> {
     throw new Error('Method not implemented.');
   }
 }
