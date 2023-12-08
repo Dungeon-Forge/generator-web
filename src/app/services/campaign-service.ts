@@ -16,5 +16,5 @@ export abstract class CampaignService {
     * @param id - A string id representing the generated campaign
     * @returns A promise to return the fully generated campaign
     */
-    abstract fetchCampaign(id: string): Promise<Campaign>
+    abstract fetchCampaign(id: string): Promise<string>
 }
