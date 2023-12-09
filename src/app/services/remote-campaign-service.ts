@@ -4,7 +4,7 @@ import { CampaignService } from "./campaign-service";
 import axios from "axios";
 
 export class RemoteCampaignService implements CampaignService {
-    baseURL = "http://dungeonforgeserver-env.eba-6x2ib96k.us-east-2.elasticbeanstalk.com"
+    baseURL = "http://DungeonForgeServer-env-1.eba-6x2ib96k.us-east-2.elasticbeanstalk.com"
 
     generateCampaign(input: CampaignFormResponse): Promise<string> {
         const url = "/campaigns/generate"
