@@ -7,7 +7,7 @@ import { GenerateCampaignComponent } from './components/generate-campaign/genera
 
 const routes: Routes = [
   {
-    path: "/",
+    path: "",
     redirectTo: "create",
     pathMatch: "full"
   },
