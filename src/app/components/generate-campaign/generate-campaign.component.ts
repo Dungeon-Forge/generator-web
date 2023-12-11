@@ -25,7 +25,7 @@ export class GenerateCampaignComponent {
   }
 
   incrementNumCharacters() {
-    this.numCharacters = Math.min(10, this.numCharacters + 1)
+    this.numCharacters = Math.min(5, this.numCharacters + 1)
   }
 
   submitSurvey() {
